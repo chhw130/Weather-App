@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import WeatherTable from '@/components/table/WeatherTable.vue';
 import WeatherForm from '@/components/form/WeatherForm.vue';
+import { useLoadingStore } from '@/utils/store/LoadingStore';
 
-const fetchLoading = ref<boolean>(false);
+const loadingStore = useLoadingStore();
+
+const isLoading = computed(() => loadingStore.isLoading);
 </script>
 <template>
-  <div style="background: #ececec; padding: 30px">
-    <WeatherForm />
-  </div>
+  <WeatherForm />
   <div style="background: #ececec; padding: 30px; margin-top: 30px">
-    <div v-if="fetchLoading" class="spinner">
+    <div v-if="isLoading" class="spinner">
       <a-spin />
     </div>
     <WeatherTable v-else />
