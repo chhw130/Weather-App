@@ -21,9 +21,13 @@ const instance = axios.create({
 });
 
 export const getWeather = async (firstDate: Date, lastDate: Date) => {
-  const res = await instance.get(
-    `getWthrDataList?serviceKey=3RyDBW%2Brdv4Th6q2HWdo3QUcJXm8V%2BXVEgsYzCWot4Cpv8jOUuh8OjYwQGTtDB73RDwcd6J5bETneVH1Cc8Csw%3D%3D&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=${firstDate}&endDt=${lastDate}&stnIds=104`
-  );
-  const data: WeatherType[] = await res.data.response.body.items.item;
-  return data;
+  try {
+    const res = await instance.get(
+      `getWthrDataList?serviceKey=3RyDBW%2Brdv4Th6q2HWdo3QUcJXm8V%2BXVEgsYzCWot4Cpv8jOUuh8OjYwQGTtDB73RDwcd6J5bETneVH1Cc8Csw%3D%3D&numOfRows=30&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=${firstDate}&endDt=${lastDate}&stnIds=104`
+    );
+    const data: WeatherType[] = await res.data.response.body.items.item;
+    return data;
+  } catch (err) {
+    alert(err);
+  }
 };
