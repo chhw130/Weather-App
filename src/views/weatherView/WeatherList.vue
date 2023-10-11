@@ -1,16 +1,33 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { reactive, ref, toRaw } from 'vue'
 
-const route = useRoute()
+interface FormType {
+  region: string
+  date: String
+}
+const formRef = ref()
+const formState = reactive<FormType>({
+  region: undefined,
+  date: undefined
+})
 
-const title = route.path
-
-console.log(route.path)
+const submitHandler = () => {
+  console.log(formState)
+}
 </script>
 <template>
-  <div>
-    <div>{{ title }}</div>
-    <h1>123</h1>
+  <div style="background: #ececec; padding: 30px">
+    <a-form :model="formState">
+      <a-form-item ref="region" label="지역">
+        <a-input v-model:value="formState.region" />
+      </a-form-item>
+      <a-form-item label="date" name="date">
+        <a-range-picker v-model:value="formState.date" type="date" />
+      </a-form-item>
+      <a-form-item>
+        <a-button type="primary" @click="submitHandler">검색</a-button>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
