@@ -301,7 +301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.20.15, @babel/parser@npm:^7.21.3, @babel/parser@npm:^7.22.15, @babel/parser@npm:^7.23.0":
+"@babel/parser@npm:^7.18.4, @babel/parser@npm:^7.20.15, @babel/parser@npm:^7.21.3, @babel/parser@npm:^7.22.15, @babel/parser@npm:^7.23.0":
   version: 7.23.0
   resolution: "@babel/parser@npm:7.23.0"
   bin:
@@ -811,6 +811,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/vue-moment@npm:^4":
+  version: 4.0.5
+  resolution: "@types/vue-moment@npm:4.0.5"
+  dependencies:
+    moment: ">=2.24.0"
+    vue: ^2.6.10
+  checksum: 3d40fc9c6d6b00d4ed786bb339f8d968198202763579c1151d56b752556b9c58c5aa87fd97763a22a2fdf53eda671ee104d7238b7e79ecdcf9521a75e05b2aec
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^6.7.0":
   version: 6.7.5
   resolution: "@typescript-eslint/eslint-plugin@npm:6.7.5"
@@ -1029,6 +1039,17 @@ __metadata:
     "@vue/compiler-core": 3.3.4
     "@vue/shared": 3.3.4
   checksum: 1c2ac0c89de8eef7be1c568d57504e6245adaaec40c2c4d9717bc231ca10bf682d918a3b358d24c786eeaf8e0d7eb8a65f57d9044775a304783fde1d069a1896
+  languageName: node
+  linkType: hard
+
+"@vue/compiler-sfc@npm:2.7.14":
+  version: 2.7.14
+  resolution: "@vue/compiler-sfc@npm:2.7.14"
+  dependencies:
+    "@babel/parser": ^7.18.4
+    postcss: ^8.4.14
+    source-map: ^0.6.1
+  checksum: 25e00abaecb311f1effbf539bc3e4fdeedb39d35f9c2947b2640187a047e6a7400e693fd7da1d3a98977b9078c5bf629ca47f8b9a59dc14a080c0a1e1dd06a49
   languageName: node
   linkType: hard
 
@@ -1659,14 +1680,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.1.1":
+"csstype@npm:^3.1.0, csstype@npm:^3.1.1":
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.10.5":
+"dayjs@npm:^1.10.5, dayjs@npm:^1.11.10, dayjs@npm:^1.11.5":
   version: 1.11.10
   resolution: "dayjs@npm:1.11.10"
   checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
@@ -3100,7 +3121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment@npm:^2.29.4":
+"moment@npm:>=2.24.0, moment@npm:^2.19.2, moment@npm:^2.29.4":
   version: 2.29.4
   resolution: "moment@npm:2.29.4"
   checksum: 0ec3f9c2bcba38dc2451b1daed5daded747f17610b92427bebe1d08d48d8b7bdd8d9197500b072d14e326dd0ccf3e326b9e3d07c5895d3d49e39b6803b76e80e
@@ -3275,6 +3296,7 @@ __metadata:
     "@rushstack/eslint-patch": ^1.3.3
     "@tsconfig/node18": ^18.2.2
     "@types/node": ^20.8.4
+    "@types/vue-moment": ^4
     "@vitejs/plugin-vue": ^4.3.4
     "@vitejs/plugin-vue-jsx": ^3.0.2
     "@vue/eslint-config-prettier": ^8.0.0
@@ -3282,6 +3304,7 @@ __metadata:
     "@vue/tsconfig": ^0.4.0
     ant-design-vue: 4.x
     axios: ^1.5.1
+    dayjs: ^1.11.10
     eslint: ^8.49.0
     eslint-plugin-vue: ^9.17.0
     moment: ^2.29.4
@@ -3290,8 +3313,10 @@ __metadata:
     typescript: ~5.2.0
     vite: ^4.4.9
     vue: ^3.3.4
+    vue-moment: ^4.1.0
     vue-router: ^4.2.4
     vue-tsc: ^1.8.11
+    vue3-dayjs-plugin: ^1.0.2
   languageName: unknown
   linkType: soft
 
@@ -3475,7 +3500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.1.10, postcss@npm:^8.4.27":
+"postcss@npm:^8.1.10, postcss@npm:^8.4.14, postcss@npm:^8.4.27":
   version: 8.4.31
   resolution: "postcss@npm:8.4.31"
   dependencies:
@@ -3776,6 +3801,13 @@ __metadata:
   version: 1.0.2
   resolution: "source-map-js@npm:1.0.2"
   checksum: c049a7fc4deb9a7e9b481ae3d424cc793cb4845daa690bc5a05d428bf41bf231ced49b4cf0c9e77f9d42fdb3d20d6187619fc586605f5eabe995a316da8d377c
+  languageName: node
+  linkType: hard
+
+"source-map@npm:^0.6.1":
+  version: 0.6.1
+  resolution: "source-map@npm:0.6.1"
+  checksum: 59ce8640cf3f3124f64ac289012c2b8bd377c238e316fb323ea22fbfe83da07d81e000071d7242cad7a23cd91c7de98e4df8830ec3f133cb6133a5f6e9f67bc2
   languageName: node
   linkType: hard
 
@@ -4180,6 +4212,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vue-moment@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "vue-moment@npm:4.1.0"
+  dependencies:
+    moment: ^2.19.2
+  peerDependencies:
+    vue: ">=1.x.x"
+  checksum: 83f6c5c364f0a1307ebd9050226262818c45bf248caba90421afabad1d346867f05293cf504f94b2d79356d759bb786b5cb26fa2c767404c8d4e744849db7a45
+  languageName: node
+  linkType: hard
+
 "vue-router@npm:^4.2.4":
   version: 4.2.5
   resolution: "vue-router@npm:4.2.5"
@@ -4224,6 +4267,28 @@ __metadata:
   peerDependencies:
     vue: ^3.0.0
   checksum: 75da2d90579fee8df112e206f31d18ff859c8aa71a53daf02e51080c9375f48e2af3f59f7484c54431b28bde281bcf84ff4b4d7a8d7a45b79069502473957610
+  languageName: node
+  linkType: hard
+
+"vue3-dayjs-plugin@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "vue3-dayjs-plugin@npm:1.0.2"
+  dependencies:
+    dayjs: ^1.11.5
+  peerDependencies:
+    dayjs: ^1.11.5
+    vue: ^3.2.38
+  checksum: 9215848a7ba405e4ce5064b74fad2121adf0a00a538b93d2ae70a4dc0dbe056e1b2fafe86f1b78b06fce7510c6592880fb7aabae38c86c83dc4f5fec8dc9a83a
+  languageName: node
+  linkType: hard
+
+"vue@npm:^2.6.10":
+  version: 2.7.14
+  resolution: "vue@npm:2.7.14"
+  dependencies:
+    "@vue/compiler-sfc": 2.7.14
+    csstype: ^3.1.0
+  checksum: 8b06da67cc40870c66a30b7a6bc2874950cd4383792c371eb30497dd14fc7b41cf308b1c4517368d8f0e7ac16198c08de19236f6a79fe43f4bdbc4a1d9d4ad07
   languageName: node
   linkType: hard
 
