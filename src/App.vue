@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import Header from '@/components/layout/TheHeader.vue'
-import MenuBar from '@/components/layout/MenuBar.vue'
+import DefaultLayout from './components/layout/DefaultLayout.vue'
 </script>
 
 <template>
-  <Header></Header>
-  <MenuBar />
+  <DefaultLayout />
 </template>
+
+<style scoped>
+main {
+  padding: 3rem;
+}
+</style>

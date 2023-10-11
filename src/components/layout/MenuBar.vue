@@ -1,58 +1,36 @@
 <template>
-  <a-menu
-    v-model:openKeys="openKeys"
-    v-model:selectedKeys="selectedKeys"
-    mode="inline"
-    :items="items"
-    @click="handleClick"
-  ></a-menu>
+  <a-layout-sider width="200" style="background: grey">
+    <a-menu v-model:openKeys="openKeys" mode="inline" :style="{ height: '100%', borderRight: 0 }">
+      <a-sub-menu key="sub1">
+        <template #title>
+          <span>
+            <user-outlined />
+            지역별 날씨
+          </span>
+        </template>
+        <a-menu-item key="1">목록</a-menu-item>
+        <a-menu-item key="2">차트</a-menu-item>
+      </a-sub-menu>
+    </a-menu>
+  </a-layout-sider>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch, VueElement, h } from 'vue'
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue'
-import type { MenuProps, ItemType } from 'ant-design-vue'
+import { ref } from 'vue'
+import type { MenuProps } from 'ant-design-vue'
+import { useRouter } from 'vue-router'
 
-const selectedKeys = ref<string[]>([])
+const router = useRouter()
+
 const openKeys = ref<string[]>([])
 
-function getItem(
-  label: VueElement | string,
-  key: string,
-  icon?: any,
-  children?: ItemType[],
-  type?: 'group'
-): ItemType {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type
-  } as ItemType
-}
-
-const items: ItemType[] = reactive([
-  getItem('Navigation One', 'sub1', () => h(MailOutlined), [
-    getItem('Item 1', 'g1', null, [getItem('Option 1', '1'), getItem('Option 2', '2')], 'group'),
-    getItem('Item 2', 'g2', null, [getItem('Option 3', '3'), getItem('Option 4', '4')], 'group')
-  ]),
-
-  getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group')
-])
-
 const handleClick: MenuProps['onClick'] = (e) => {
-  console.log('click', e)
+  return router.push(`${e.key}`)
 }
-
-watch(openKeys, (val) => {
-  console.log('openKeys', val)
-})
 </script>
 
 <style scoped>
-.ant-menu {
-  width: 365px;
+.ant-layout-sider {
   height: 100%;
 }
 </style>

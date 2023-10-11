@@ -1,7 +1,5 @@
 <template>
-  <a-layout-header class="header">
-    <p>OJT-PROD</p>
-  </a-layout-header>
+  <div>chart</div>
 </template>
 
 <script setup lang="ts"></script>
