@@ -1,25 +1,27 @@
 <script setup lang="ts">
-import { reactive, ref, toRaw } from 'vue';
+import { reactive } from 'vue';
 import { getWeather } from '@/utils/axiosSetting/axios';
 import { useDate } from 'vue3-dayjs-plugin/useDate';
 import { Moment } from 'moment';
+import { useWeatherStore } from '@/utils/store/WeatherStore';
 
 interface FormType {
   region: string;
-  date: Moment[];
+  date: Moment[] | any;
 }
 const formState = reactive<FormType>({
   region: undefined,
   date: [],
 });
 
+const weatherStore = useWeatherStore();
 const date = useDate();
 
 const submitHandler = async () => {
   const firstDate = date(formState.date[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate = date(formState.date[1]?.$d).format('YYYYMMDD') || 0;
-  //   console.log(firstDate, lastDate);
   const data = await getWeather(firstDate, lastDate);
+  weatherStore.fetchWeather(data);
 };
 </script>
 <template>
