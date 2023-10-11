@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { reactive, ref, toRaw } from 'vue'
+import { reactive, ref, toRaw } from 'vue';
+import { getWeather } from '@/utils/axiosSetting/axios';
 
 interface FormType {
-  region: string
-  date: String
+  region: string;
+  date: String;
 }
-const formRef = ref()
 const formState = reactive<FormType>({
   region: undefined,
-  date: undefined
-})
+  date: undefined,
+});
 
-const submitHandler = () => {
-  console.log(formState)
-}
+const submitHandler = async () => {
+  //   const data = await getWeather();
+  //   console.log(data);
+
+  console.log(formState.date);
+};
 </script>
 <template>
   <div style="background: #ececec; padding: 30px">
