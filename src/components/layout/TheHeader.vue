@@ -1,9 +1,24 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goHomeHandler = () => {
+  return router.push('/');
+};
+</script>
 <template>
   <a-layout-header class="header">
-    <p>OJT-PROD</p>
+    <h1 class="logo" @click="goHomeHandler">OJT-PROD</h1>
   </a-layout-header>
 </template>
 
-<script setup lang="ts"></script>
+<style scoped>
+.header {
+  background-color: aliceblue;
+}
 
-<style scoped></style>
+.logo {
+  cursor: pointer;
+}
+</style>

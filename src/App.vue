@@ -36,6 +36,6 @@ section {
 }
 
 .ant-layout-header {
-  background-color: grey;
+  background-color: rgb(236, 236, 236);
 }
 </style>

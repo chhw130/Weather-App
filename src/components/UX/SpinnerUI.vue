@@ -1,13 +1,11 @@
 <template>
   <div class="spinner">
-    <a-spin />
+    <a-spin tip="데이터를 가져오는 중입니다.." />
   </div>
 </template>
 
-<script setup lang="ts"></script>
-
 <style scoped>
 .spinner {
-  text-align: center;
+  margin: auto auto;
 }
 </style>

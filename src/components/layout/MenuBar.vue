@@ -25,7 +25,6 @@ const selectedKeys = ref<string[]>(['1']);
 const router = useRouter();
 
 const menuHandler = ({ key }: { key: string }) => {
-  console.log(key);
   router.push({ name: `${key}` });
 };
 </script>

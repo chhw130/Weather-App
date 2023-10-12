@@ -3,46 +3,9 @@ import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { computed } from 'vue';
 import SpinnerUI from '../UX/SpinnerUI.vue';
+import { columnData } from '@/utils/clientdata/ClientData';
 
 const weatherStore = useWeatherStore();
-
-const columns = [
-  {
-    title: '날짜',
-    dataIndex: 'tm',
-    key: 'tm',
-  },
-  {
-    title: '평균 기온',
-    key: 'avgTa',
-    dataIndex: 'avgTa',
-  },
-  {
-    title: '최고 기온',
-    key: 'maxTa',
-    dataIndex: 'maxTa',
-  },
-  {
-    title: '최고 기온 시간',
-    key: 'maxTaHrmt',
-    dataIndex: 'maxTaHrmt',
-  },
-  {
-    title: '최저 기온',
-    key: 'minTa',
-    dataIndex: 'minTa',
-  },
-  {
-    title: '최저 기온 시간',
-    key: 'minTaHrmt',
-    dataIndex: 'minTaHrmt',
-  },
-  {
-    title: '일강수량',
-    key: 'sumRn',
-    dataIndex: 'sumRn',
-  },
-];
 
 const loadingStore = useLoadingStore();
 
@@ -53,7 +16,7 @@ const weatherTableData = computed(() => weatherStore.weatherData);
 <template>
   <section>
     <SpinnerUI v-if="isLoading" />
-    <a-table v-else :columns="columns" :data-source="weatherTableData">
+    <a-table v-else :columns="columnData" :data-source="weatherTableData">
       <template #tm="{ tm }">
         <a>{{ tm }}</a>
       </template>

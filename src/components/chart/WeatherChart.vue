@@ -12,6 +12,7 @@ import VChart from 'vue-echarts';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { computed, reactive } from 'vue';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
+import SpinnerUI from '../UX/SpinnerUI.vue';
 
 use([
   ToolboxComponent,
@@ -123,25 +124,22 @@ const option = reactive({
 
 <template>
   <section>
-    <div v-if="isLoading" class="spinner">
-      <a-spin />
-    </div>
+    <SpinnerUI v-if="isLoading" />
     <v-chart v-else class="chart" :option="option" />
   </section>
 </template>
 
 <style scoped>
-.spinner {
-  text-align: center;
-}
 .chart {
   height: 400px;
   width: 100%;
 }
 
 section {
+  display: flex;
   background-color: #ececec;
   margin: 30px 0 0 0;
   padding: 30px;
+  height: 400px;
 }
 </style>
