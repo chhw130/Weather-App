@@ -1,15 +1,39 @@
 <script setup lang="ts">
 import WeatherDetailTab from '@/components/tab/WeatherDetailTab.vue';
+import { WeatherType, getWeather } from '@/utils/axiosSetting/axios';
+import { reactive, ref } from 'vue';
+import { LocationQuery, useRoute } from 'vue-router';
+import { useDate } from 'vue3-dayjs-plugin/useDate';
+
+const route = useRoute();
+const date = useDate();
+
+const queryData = reactive<LocationQuery>(route.query);
+const dateWeatherData = ref<void | WeatherType[]>([]);
+
+const submitData = {
+  dateDiff: 1,
+  firstDate: date(queryData.date).format('YYYYMMDD'),
+  lastDate: date(queryData.date).format('YYYYMMDD'),
+  region: queryData.regionId,
+};
+
+const fetchDateWeather = async () => {
+  const data = await getWeather(submitData);
+  dateWeatherData.value = data;
+};
+
+fetchDateWeather();
 </script>
 <template>
   <section class="detail-section">
     <div class="title-category">
       <strong>지역(지역번호)</strong>
-      <p>서울</p>
+      <p>서울({{ queryData.regionId }})</p>
     </div>
     <div class="title-category">
       <strong>날짜</strong>
-      <p>2023</p>
+      <p>{{ queryData.date }}</p>
     </div>
   </section>
   <section>

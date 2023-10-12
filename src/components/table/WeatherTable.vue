@@ -1,17 +1,29 @@
 <script setup lang="ts">
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import SpinnerUI from '../UX/SpinnerUI.vue';
 import { columnData } from '@/utils/clientdata/ClientData';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const weatherStore = useWeatherStore();
-
 const loadingStore = useLoadingStore();
 
 const isLoading = computed(() => loadingStore.isLoading);
 
 const weatherTableData = computed(() => weatherStore.weatherData);
+
+const goDetailView = (tm: string) => {
+  const regionId = weatherTableData.value[0].stnId;
+
+  const queryData = {
+    date: tm,
+    regionId,
+  };
+
+  return router.push({ name: 'detail', query: queryData });
+};
 </script>
 <template>
   <section>
@@ -39,6 +51,14 @@ const weatherTableData = computed(() => weatherStore.weatherData);
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>
+      </template>
+
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'tm'">
+          <a @click="goDetailView(record.tm)">
+            {{ record.tm }}
+          </a>
+        </template>
       </template>
     </a-table>
   </section>

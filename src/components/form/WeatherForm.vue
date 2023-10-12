@@ -19,7 +19,7 @@ interface CalculateDate {
 }
 
 export interface SubmitData extends CalculateDate {
-  region: number;
+  region: number | string | string[];
 }
 
 const formState = reactive<FormType>({

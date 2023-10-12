@@ -1,62 +1,14 @@
-<template>
-  <div class="card-container">
-    <a-tabs v-model:activeKey="activeKey" type="card">
-      <a-tab-pane key="1" tab="Tab Title 1">
-        <p>Content of Tab Pane 1</p>
-        <p>Content of Tab Pane 1</p>
-        <p>Content of Tab Pane 1</p>
-      </a-tab-pane>
-      <a-tab-pane key="2" tab="Tab Title 2">
-        <p>Content of Tab Pane 2</p>
-        <p>Content of Tab Pane 2</p>
-        <p>Content of Tab Pane 2</p>
-      </a-tab-pane>
-      <a-tab-pane key="3" tab="Tab Title 3">
-        <p>Content of Tab Pane 3</p>
-        <p>Content of Tab Pane 3</p>
-        <p>Content of Tab Pane 3</p>
-      </a-tab-pane>
-    </a-tabs>
-  </div>
-</template>
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-export default defineComponent({
-  setup() {
-    return {
-      activeKey: ref(1),
-    };
-  },
-});
+const activeKey = ref('1');
 </script>
-<style>
-.card-container {
-  background: #f5f5f5;
-  overflow: hidden;
-  padding: 24px;
-}
-.card-container > .ant-tabs-card > .ant-tabs-content {
-  height: 120px;
-  margin-top: -16px;
-}
-
-.card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
-  background: #fff;
-  padding: 16px;
-}
-
-.card-container > .ant-tabs-card > .ant-tabs-bar {
-  border-color: #fff;
-}
-
-.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
-  border-color: transparent;
-  background: transparent;
-}
-
-.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
-  border-color: #fff;
-  background: #fff;
-}
-</style>
+<template>
+  <a-tabs v-model:activeKey="activeKey">
+    <a-tab-pane key="1" tab="Tab 1">Content of Tab Pane 1</a-tab-pane>
+    <a-tab-pane key="2" tab="Tab 2" force-render
+      >Content of Tab Pane 2</a-tab-pane
+    >
+    <a-tab-pane key="3" tab="Tab 3">Content of Tab Pane 3</a-tab-pane>
+  </a-tabs>
+</template>
