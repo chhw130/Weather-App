@@ -22,9 +22,15 @@ export const getWeather = async (submitData: SubmitData) => {
     const res = await instance.get(
       `getWthrDataList?serviceKey=${SERVICE_KEY}&numOfRows=${submitData.dateDiff}&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=${submitData.firstDate}&endDt=${submitData.lastDate}&stnIds=${submitData.region}`
     );
-    const data: WeatherType[] = await res.data.response.body.items.item;
-    return data;
-  } catch (err) {
-    alert(err);
+    const { header, body } = await res.data.response;
+    console.log(header, body);
+
+    const data = body?.items.item;
+
+    const err = header.resultMsg;
+
+    return data || alert(err);
+  } catch {
+    alert('다시 시도해주세요.');
   }
 };

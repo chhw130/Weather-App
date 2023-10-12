@@ -25,32 +25,48 @@ export const regionData: RegionDataType[] = [
     stnlds: 90,
   },
   {
-    region: '북춘천',
-    stnlds: 93,
-  },
-  {
-    region: '철원',
-    stnlds: 95,
-  },
-  {
-    region: '동두천',
-    stnlds: 98,
-  },
-  {
     region: '파주',
     stnlds: 99,
   },
   {
-    region: '대관령',
-    stnlds: 100,
+    region: '서울',
+    stnlds: 108,
   },
   {
-    region: '춘천',
-    stnlds: 101,
+    region: '인천',
+    stnlds: 112,
   },
   {
-    region: '백령도',
-    stnlds: 102,
+    region: '원주',
+    stnlds: 114,
+  },
+  {
+    region: '울릉도',
+    stnlds: 115,
+  },
+  {
+    region: '수원',
+    stnlds: 119,
+  },
+  {
+    region: '대구',
+    stnlds: 143,
+  },
+  {
+    region: '울산',
+    stnlds: 152,
+  },
+  {
+    region: '광주',
+    stnlds: 156,
+  },
+  {
+    region: '부산',
+    stnlds: 159,
+  },
+  {
+    region: '제주',
+    stnlds: 184,
   },
 ];
 
