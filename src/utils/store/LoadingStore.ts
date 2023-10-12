@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia';
 
+interface LoadingStoreState {
+  isLoading: boolean;
+}
+
 export const useLoadingStore = defineStore('loading', {
-  state: () => {
+  state: (): LoadingStoreState => {
     return { isLoading: false };
   },
 

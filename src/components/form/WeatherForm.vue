@@ -7,14 +7,19 @@ import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
 
+const formRef = ref();
+const date = useDate();
+const weatherStore = useWeatherStore();
+const loadingStore = useLoadingStore();
+
 interface FormType {
   region: number;
   date: Moment[] | any;
 }
 
 interface CalculateDate {
-  firstDate: Date;
-  lastDate: Date;
+  firstDate: string;
+  lastDate: string;
   dateDiff: number;
 }
 
@@ -27,20 +32,15 @@ const formState = reactive<FormType>({
   date: undefined,
 });
 
-const formRef = ref();
-const weatherStore = useWeatherStore();
-const loadingStore = useLoadingStore();
-const date = useDate();
-
 /**Date calculate/formate function */
 const calculateDate = (dateData: any): CalculateDate => {
-  const firstDate = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
-  const lastDate = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
+  const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
+  const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
 
   const date1 = date(firstDate);
   const date2 = date(lastDate);
 
-  const dateDiff = date2.diff(date1, 'day') + 1;
+  const dateDiff: number = date2.diff(date1, 'day') + 1;
 
   return { firstDate, lastDate, dateDiff };
 };
@@ -50,21 +50,26 @@ const submitHandler = () => {
   formRef.value
     .validate()
     .then(async () => {
+      /**loading active */
       loadingStore.updateLoading();
-      const dateData = formState.date;
+
+      /**formatting date */
+      const dateData: string = formState.date;
       const { firstDate, lastDate, dateDiff } = calculateDate(dateData);
 
+      /**data fetching */
       const submitData: SubmitData = {
         firstDate,
         lastDate,
         dateDiff,
         region: formState.region,
       };
-
       const data = await getWeather(submitData);
 
+      /**store data in pinia store */
       weatherStore.updateWeather(data);
 
+      /**loading inactive */
       loadingStore.updateLoading();
     })
     .catch(() => {
@@ -77,14 +82,14 @@ const rules = {
   date: [
     {
       required: true,
-      message: 'Please pick a date',
+      message: '날짜를 선택해주세요.',
       trigger: 'change',
     },
   ],
   region: [
     {
       required: true,
-      message: 'Please select Activity zone',
+      message: '지역을 선택해주세요.',
       trigger: 'change',
     },
   ],

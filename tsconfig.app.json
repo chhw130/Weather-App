@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node"],
+    "types": ["webpack-env", "node"],
     "composite": true,
     "target": "esnext",
     "module": "esnext",

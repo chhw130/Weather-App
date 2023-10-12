@@ -13,6 +13,7 @@ import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { computed, reactive } from 'vue';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import SpinnerUI from '../UX/SpinnerUI.vue';
+import { EChartsCoreOption } from 'echarts';
 
 use([
   ToolboxComponent,
@@ -46,8 +47,8 @@ const dateRainFall = computed(() =>
   })
 );
 
-/**Chart option */
-const option = reactive({
+/**chart option */
+const option = reactive<EChartsCoreOption>({
   tooltip: {
     trigger: 'axis',
     axisPointer: {

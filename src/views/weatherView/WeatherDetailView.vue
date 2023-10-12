@@ -11,7 +11,14 @@ const date = useDate();
 const queryData = reactive<LocationQuery>(route.query);
 const dateWeatherData = ref<void | WeatherType[]>([]);
 
-const submitData = {
+interface SubmitDataType {
+  dateDiff: number;
+  firstDate: string;
+  lastDate: string;
+  region: string | string[];
+}
+
+const submitData: SubmitDataType = {
   dateDiff: 1,
   firstDate: date(queryData.date).format('YYYYMMDD'),
   lastDate: date(queryData.date).format('YYYYMMDD'),

@@ -5,12 +5,15 @@ const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 const SERVICE_KEY = import.meta.env.VITE_APP_SERVICE_KEY;
 
 export interface WeatherType {
-  avgTa: String;
-  minTa: String;
-  maxTaHrmt: String;
-  maxTa: String;
-  minTaHrmt: String;
-  sumRn: String;
+  avgTa: string;
+  minTa: string;
+  maxTaHrmt: string;
+  maxTa: string;
+  minTaHrmt: string;
+  sumRn: string;
+  stnId: string;
+  stnNm: string;
+  tm: string;
 }
 
 const instance = axios.create({

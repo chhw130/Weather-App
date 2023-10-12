@@ -1,8 +1,12 @@
 import { defineStore } from 'pinia';
 import { WeatherType } from '../axiosSetting/axios';
 
+interface WeatherStoreState {
+  weatherData: WeatherType[];
+}
+
 export const useWeatherStore = defineStore('weather', {
-  state: () => {
+  state: (): WeatherStoreState => {
     return { weatherData: [] };
   },
   actions: {

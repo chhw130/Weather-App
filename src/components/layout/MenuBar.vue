@@ -4,7 +4,6 @@
       v-model:selectedKeys="selectedKeys"
       v-model:openKeys="openKeys"
       mode="inline"
-      :style="{ height: '100%', borderRight: 0 }"
       @click="menuHandler"
     >
       <a-sub-menu key="sub1">
@@ -26,6 +25,7 @@ const selectedKeys = ref<string[]>([]);
 const openKeys = ref<string[]>(['sub1']);
 const router = useRouter();
 
+/**menu control function */
 const menuHandler = ({ key }: { key: string }) => {
   selectedKeys.value = [key];
   return router.push({ name: `${key}` });

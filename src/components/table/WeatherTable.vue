@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import SpinnerUI from '../UX/SpinnerUI.vue';
 import { columnData } from '@/utils/clientdata/ClientData';
 import { useRouter } from 'vue-router';
@@ -11,13 +11,12 @@ const weatherStore = useWeatherStore();
 const loadingStore = useLoadingStore();
 
 const isLoading = computed(() => loadingStore.isLoading);
-
 const weatherTableData = computed(() => weatherStore.weatherData);
 
+/**go detailpage when weatherTable weatherDate function */
 const goDetailView = (tm: string) => {
-  const regionId: string = weatherTableData?.value[0].stnId;
-  const regionName: string = weatherTableData?.value[0].stnNm;
-
+  const regionId = weatherTableData?.value[0].stnId;
+  const regionName = weatherTableData?.value[0].stnNm;
   const queryData = {
     date: tm,
     regionId,
@@ -39,17 +38,7 @@ const goDetailView = (tm: string) => {
       </template>
       <template #tags="{ text: tags }">
         <span>
-          <a-tag
-            v-for="tag in tags"
-            :key="tag"
-            :color="
-              tag === 'loser'
-                ? 'volcano'
-                : tag.length > 5
-                ? 'geekblue'
-                : 'green'
-            "
-          >
+          <a-tag v-for="tag in tags" :key="tag">
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>
