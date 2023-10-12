@@ -8,8 +8,18 @@ import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
 
 interface FormType {
-  region: string;
+  region: number;
   date: Moment[] | any;
+}
+
+interface CalculateDate {
+  firstDate: Date;
+  lastDate: Date;
+  dateDiff: number;
+}
+
+export interface SubmitData extends CalculateDate {
+  region: number;
 }
 
 const formState = reactive<FormType>({
@@ -22,22 +32,36 @@ const weatherStore = useWeatherStore();
 const loadingStore = useLoadingStore();
 const date = useDate();
 
+const calculateDate = (dateData: Date[]): CalculateDate => {
+  const firstDate = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
+  const lastDate = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
+
+  const date1 = date(firstDate);
+  const date2 = date(lastDate);
+
+  const dateDiff = date2.diff(date1, 'day') + 1;
+
+  return { firstDate, lastDate, dateDiff };
+};
+
 const submitHandler = () => {
   formRef.value
     .validate()
     .then(async () => {
       loadingStore.updateLoading();
-      const firstDate = date(formState.date[0]?.$d).format('YYYYMMDD') || 0;
-      const lastDate = date(formState.date[1]?.$d).format('YYYYMMDD') || 0;
+      const dateData = formState.date;
+      const { firstDate, lastDate, dateDiff } = calculateDate(dateData);
 
-      // const submitData = {
-      //   firstDate,
-      //   lastDate,
-      //   region :
-      //   formState.region
-      // };
+      const submitData: SubmitData = {
+        firstDate,
+        lastDate,
+        dateDiff,
+        region: formState.region,
+      };
 
-      const data = await getWeather(firstDate, lastDate);
+      console.log(submitData);
+
+      const data = await getWeather(submitData);
       weatherStore.updateWeather(data);
       loadingStore.updateLoading();
     })

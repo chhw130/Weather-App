@@ -13,10 +13,6 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "Node",
-    "types": [
-      "webpack-env",
-      "node"
-    ],
+    "types": ["vite/client"]
   }
-  
 }

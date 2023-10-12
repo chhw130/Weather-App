@@ -1,3 +1,4 @@
+import { SubmitData } from '@/components/form/WeatherForm.vue';
 import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
@@ -16,10 +17,10 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getWeather = async (firstDate: Date, lastDate: Date) => {
+export const getWeather = async (submitData: SubmitData) => {
   try {
     const res = await instance.get(
-      `getWthrDataList?serviceKey=${SERVICE_KEY}&numOfRows=30&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=${firstDate}&endDt=${lastDate}&stnIds=104`
+      `getWthrDataList?serviceKey=${SERVICE_KEY}&numOfRows=${submitData.dateDiff}&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=${submitData.firstDate}&endDt=${submitData.lastDate}&stnIds=${submitData.region}`
     );
     const data: WeatherType[] = await res.data.response.body.items.item;
     return data;
