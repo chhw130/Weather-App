@@ -11,6 +11,7 @@ import {
 import VChart from 'vue-echarts';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { computed, reactive } from 'vue';
+import { useLoadingStore } from '@/utils/store/LoadingStore';
 
 use([
   ToolboxComponent,
@@ -22,7 +23,9 @@ use([
   CanvasRenderer,
 ]);
 
+const loadingStore = useLoadingStore();
 const weatherStore = useWeatherStore();
+const isLoading = computed(() => loadingStore.isLoading);
 
 const date = computed(() =>
   weatherStore.weatherData.map((data) => {
@@ -120,11 +123,17 @@ const option = reactive({
 
 <template>
   <section>
-    <v-chart class="chart" :option="option" />
+    <div v-if="isLoading" class="spinner">
+      <a-spin />
+    </div>
+    <v-chart v-else class="chart" :option="option" />
   </section>
 </template>
 
 <style scoped>
+.spinner {
+  text-align: center;
+}
 .chart {
   height: 400px;
   width: 100%;

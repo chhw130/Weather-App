@@ -44,7 +44,7 @@ const submitHandler = () => {
       const firstDate = date(formState.date[0]?.$d).format('YYYYMMDD') || 0;
       const lastDate = date(formState.date[1]?.$d).format('YYYYMMDD') || 0;
       const data = await getWeather(firstDate, lastDate);
-      weatherStore.fetchWeather(data);
+      weatherStore.updateWeather(data);
       loadingStore.updateLoading();
     })
     .catch(() => {

@@ -4,9 +4,8 @@ export const useWeatherStore = defineStore('weather', {
   state: () => {
     return { weatherData: [] };
   },
-
   actions: {
-    fetchWeather(state) {
+    updateWeather(state: WeatherType[]) {
       this.weatherData = state;
     },
   },
