@@ -30,22 +30,23 @@ const isLoading = computed(() => loadingStore.isLoading);
 
 const date = computed(() =>
   weatherStore.weatherData.map((data) => {
-    return data.tm || [];
+    return data.tm || 0;
   })
 );
 
 const avgTem = computed(() =>
   weatherStore.weatherData.map((data) => {
-    return data.avgTa || [];
+    return data.avgTa || 0;
   })
 );
 
 const dateRainFall = computed(() =>
   weatherStore.weatherData.map((data) => {
-    return data.sumRn;
+    return data.sumRn || 0;
   })
 );
 
+/**Chart option */
 const option = reactive({
   tooltip: {
     trigger: 'axis',
@@ -54,12 +55,6 @@ const option = reactive({
       crossStyle: {
         color: '#999',
       },
-    },
-  },
-  toolbox: {
-    feature: {
-      dataView: { show: true, readOnly: false },
-      magicType: { show: true, type: ['line', 'bar'] },
     },
   },
   legend: {

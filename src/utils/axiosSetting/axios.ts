@@ -4,7 +4,7 @@ import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 const SERVICE_KEY = import.meta.env.VITE_APP_SERVICE_KEY;
 
-interface WeatherType {
+export interface WeatherType {
   avgTa: String;
   minTa: String;
   maxTaHrmt: String;
@@ -23,9 +23,8 @@ export const getWeather = async (submitData: SubmitData) => {
       `getWthrDataList?serviceKey=${SERVICE_KEY}&numOfRows=${submitData.dateDiff}&dataType=JSON&dataCd=ASOS&dateCd=DAY&startDt=${submitData.firstDate}&endDt=${submitData.lastDate}&stnIds=${submitData.region}`
     );
     const { header, body } = await res.data.response;
-    console.log(header, body);
 
-    const data = body?.items.item;
+    const data: WeatherType[] = body?.items.item;
 
     const err = header.resultMsg;
 

@@ -9,15 +9,11 @@ const goHomeHandler = () => {
 </script>
 <template>
   <a-layout-header class="header">
-    <h1 class="logo" @click="goHomeHandler">OJT-PROD</h1>
+    <div class="logo" @click="goHomeHandler">OJT-PROD</div>
   </a-layout-header>
 </template>
 
 <style scoped>
-.header {
-  background-color: aliceblue;
-}
-
 .logo {
   cursor: pointer;
 }

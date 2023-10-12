@@ -1,7 +1,8 @@
 <template>
-  <a-layout-sider width="200" style="background: grey">
+  <a-layout-sider>
     <a-menu
       v-model:selectedKeys="selectedKeys"
+      v-model:openKeys="openKeys"
       mode="inline"
       :style="{ height: '100%', borderRight: 0 }"
       @click="menuHandler"
@@ -21,16 +22,20 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const selectedKeys = ref<string[]>(['1']);
+const selectedKeys = ref<string[]>([]);
+const openKeys = ref<string[]>(['sub1']);
 const router = useRouter();
 
 const menuHandler = ({ key }: { key: string }) => {
-  router.push({ name: `${key}` });
+  selectedKeys.value = [key];
+  return router.push({ name: `${key}` });
 };
 </script>
 
 <style scoped>
 .ant-layout-sider {
   height: 100%;
+  padding: 0px 10px;
+  background-color: rgb(236, 236, 236);
 }
 </style>

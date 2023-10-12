@@ -32,7 +32,8 @@ const weatherStore = useWeatherStore();
 const loadingStore = useLoadingStore();
 const date = useDate();
 
-const calculateDate = (dateData: Date[]): CalculateDate => {
+/**Date calculate/formate function */
+const calculateDate = (dateData: any): CalculateDate => {
   const firstDate = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
 
@@ -44,6 +45,7 @@ const calculateDate = (dateData: Date[]): CalculateDate => {
   return { firstDate, lastDate, dateDiff };
 };
 
+/**Form submit event */
 const submitHandler = () => {
   formRef.value
     .validate()
@@ -59,10 +61,10 @@ const submitHandler = () => {
         region: formState.region,
       };
 
-      console.log(submitData);
-
       const data = await getWeather(submitData);
+
       weatherStore.updateWeather(data);
+
       loadingStore.updateLoading();
     })
     .catch(() => {
@@ -70,6 +72,7 @@ const submitHandler = () => {
     });
 };
 
+/**Form validation rule */
 const rules = {
   date: [
     {
@@ -89,7 +92,7 @@ const rules = {
 </script>
 
 <template>
-  <div style="background: #ececec; padding: 30px">
+  <section>
     <a-form :model="formState" :rules="rules" ref="formRef">
       <a-form-item ref="region" required label="지역" name="region">
         <a-select v-model:value="formState.region">
@@ -108,7 +111,12 @@ const rules = {
         <a-button type="primary" @click="submitHandler">검색</a-button>
       </a-form-item>
     </a-form>
-  </div>
+  </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+section {
+  background-color: #ececec;
+  padding: 30px;
+}
+</style>

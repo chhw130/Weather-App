@@ -7,14 +7,10 @@ const route = useRoute();
 </script>
 
 <template>
-  <a-layout>
-    <a-layout-header>
-      <TheHeader />
-    </a-layout-header>
+  <a-layout class="main">
+    <TheHeader />
     <a-layout>
-      <a-layout-sider>
-        <MenuBar />
-      </a-layout-sider>
+      <MenuBar />
       <a-layout style="padding: 30px">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
@@ -30,11 +26,9 @@ const route = useRoute();
 </template>
 
 <style scoped>
-section {
+.main {
   height: 100%;
-  background-color: white;
 }
-
 .ant-layout-header {
   background-color: rgb(236, 236, 236);
 }
