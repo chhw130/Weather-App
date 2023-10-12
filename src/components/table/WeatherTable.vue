@@ -15,11 +15,13 @@ const isLoading = computed(() => loadingStore.isLoading);
 const weatherTableData = computed(() => weatherStore.weatherData);
 
 const goDetailView = (tm: string) => {
-  const regionId = weatherTableData.value[0].stnId;
+  const regionId: string = weatherTableData?.value[0].stnId;
+  const regionName: string = weatherTableData?.value[0].stnNm;
 
   const queryData = {
     date: tm,
     regionId,
+    regionName,
   };
 
   return router.push({ name: 'detail', query: queryData });

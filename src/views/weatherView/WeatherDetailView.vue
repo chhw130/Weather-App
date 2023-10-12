@@ -29,7 +29,7 @@ fetchDateWeather();
   <section class="detail-section">
     <div class="title-category">
       <strong>지역(지역번호)</strong>
-      <p>서울({{ queryData.regionId }})</p>
+      <p>{{ queryData.regionName }}({{ queryData.regionId }})</p>
     </div>
     <div class="title-category">
       <strong>날짜</strong>

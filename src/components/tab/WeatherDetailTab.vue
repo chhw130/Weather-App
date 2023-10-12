@@ -5,10 +5,10 @@ const activeKey = ref('1');
 </script>
 <template>
   <a-tabs v-model:activeKey="activeKey">
-    <a-tab-pane key="1" tab="Tab 1">Content of Tab Pane 1</a-tab-pane>
-    <a-tab-pane key="2" tab="Tab 2" force-render
+    <a-tab-pane key="1" tab="기온">Content of Tab Pane 1</a-tab-pane>
+    <a-tab-pane key="2" tab="풍량" force-render
       >Content of Tab Pane 2</a-tab-pane
     >
-    <a-tab-pane key="3" tab="Tab 3">Content of Tab Pane 3</a-tab-pane>
+    <a-tab-pane key="3" tab="강수">Content of Tab Pane 3</a-tab-pane>
   </a-tabs>
 </template>
