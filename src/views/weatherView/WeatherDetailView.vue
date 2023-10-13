@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import WeatherDetailTab from '@/components/tab/WeatherDetailTab.vue';
+import DetailSubject from '@/components/card/DetailSubject.vue';
 import { WeatherType, getWeather } from '@/utils/axiosSetting/axios';
 import { reactive, ref } from 'vue';
 import { LocationQuery, useRoute } from 'vue-router';
@@ -9,7 +10,28 @@ const route = useRoute();
 const date = useDate();
 
 const queryData = reactive<LocationQuery>(route.query);
-const dateWeatherData = ref<void | WeatherType[]>([]);
+const dateWeatherData = ref<WeatherType>({
+  avgTa: '',
+  minTa: '',
+  maxTaHrmt: '',
+  maxTa: '',
+  minTaHrmt: '',
+  sumRn: '',
+  stnId: '',
+  stnNm: '',
+  tm: '',
+  avgWs: '',
+  maxInsWs: '',
+  maxInsWsWd: '',
+  maxWs: '',
+  maxInsWsHrmt: '',
+  maxWsHrmt: '',
+  maxWd: '',
+  sumRnDur: '',
+  mi10MaxRn: '',
+  hr1MaxRn: '',
+  hr1MaxRnHrmt: '',
+});
 
 interface SubmitDataType {
   dateDiff: number;
@@ -27,21 +49,14 @@ const submitData: SubmitDataType = {
 
 const fetchDateWeather = async () => {
   const data = await getWeather(submitData);
-  dateWeatherData.value = data;
+  dateWeatherData.value = data[0];
 };
 
 fetchDateWeather();
 </script>
 <template>
   <section class="detail-section">
-    <div class="title-category">
-      <strong>지역(지역번호)</strong>
-      <p>{{ queryData.regionName }}({{ queryData.regionId }})</p>
-    </div>
-    <div class="title-category">
-      <strong>날짜</strong>
-      <p>{{ queryData.date }}</p>
-    </div>
+    <DetailSubject />
   </section>
   <section>
     <WeatherDetailTab :dateWeatherData="dateWeatherData" />
@@ -53,11 +68,5 @@ fetchDateWeather();
   background-color: #ececec;
   padding: 30px;
   display: flex;
-}
-
-.title-category {
-  width: 50%;
-  font-size: 1.3rem;
-  line-height: 2;
 }
 </style>

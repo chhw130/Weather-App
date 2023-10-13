@@ -14,6 +14,17 @@ export interface WeatherType {
   stnId: string;
   stnNm: string;
   tm: string;
+  avgWs: string;
+  maxInsWs: string;
+  maxInsWsWd: string;
+  maxWs: string;
+  maxInsWsHrmt: string;
+  maxWsHrmt: string;
+  maxWd: string;
+  sumRnDur: string;
+  mi10MaxRn: string;
+  hr1MaxRn: string;
+  hr1MaxRnHrmt: string;
 }
 
 const instance = axios.create({

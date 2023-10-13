@@ -182,4 +182,9 @@ section {
 .search-btn {
   margin-left: auto;
 }
+
+.ant-btn {
+  width: 100px;
+  height: 40px;
+}
 </style>
