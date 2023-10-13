@@ -2,7 +2,6 @@
 import { reactive, ref } from 'vue';
 import { getWeather } from '@/utils/axiosSetting/axios';
 import { useDate } from 'vue3-dayjs-plugin/useDate';
-import { Moment } from 'moment';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
@@ -14,7 +13,18 @@ const loadingStore = useLoadingStore();
 
 interface FormType {
   region: number;
-  date: Moment[] | any;
+  date: DateType[];
+}
+
+interface DateType {
+  $L: string;
+  $u: string;
+  $H: number;
+  $D: number;
+  $M: number;
+  $W: number;
+  $d: Date;
+  $isDayjsObject: boolean;
 }
 
 interface CalculateDate {
@@ -32,8 +42,9 @@ const formState = reactive<FormType>({
   date: undefined,
 });
 
-/**Date calculate/formate function */
-const calculateDate = (dateData: any): CalculateDate => {
+/**date calculate/formate function */
+const calculateDate = (dateData: DateType[]): CalculateDate => {
+  console.log(dateData);
   const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
 
@@ -45,7 +56,7 @@ const calculateDate = (dateData: any): CalculateDate => {
   return { firstDate, lastDate, dateDiff };
 };
 
-/**Form submit event */
+/**form submit event */
 const submitHandler = () => {
   formRef.value
     .validate()
@@ -54,7 +65,7 @@ const submitHandler = () => {
       loadingStore.updateLoading();
 
       /**formatting date */
-      const dateData: string = formState.date;
+      const dateData = formState.date;
       const { firstDate, lastDate, dateDiff } = calculateDate(dateData);
 
       /**data fetching */
@@ -98,8 +109,19 @@ const rules = {
 
 <template>
   <section>
-    <a-form :model="formState" :rules="rules" ref="formRef">
-      <a-form-item ref="region" required label="지역" name="region">
+    <a-form
+      :model="formState"
+      :rules="rules"
+      ref="formRef"
+      class="weather-form"
+    >
+      <a-form-item
+        ref="region"
+        required
+        label="지역"
+        name="region"
+        class="region-item category-item"
+      >
         <a-select v-model:value="formState.region">
           <a-select-option
             v-for="region in regionData"
@@ -109,10 +131,21 @@ const rules = {
           >
         </a-select>
       </a-form-item>
-      <a-form-item ref="date" label="날짜" required name="date">
-        <a-range-picker v-model:value="formState.date" required type="date" />
+      <a-form-item
+        ref="date"
+        label="날짜"
+        required
+        name="date"
+        class="category-item"
+      >
+        <a-range-picker
+          v-model:value="formState.date"
+          required
+          type="date"
+          class="date-picker"
+        />
       </a-form-item>
-      <a-form-item>
+      <a-form-item class="search-btn category-item">
         <a-button type="primary" @click="submitHandler">검색</a-button>
       </a-form-item>
     </a-form>
@@ -120,8 +153,33 @@ const rules = {
 </template>
 
 <style scoped>
+.weather-form {
+  display: flex;
+  width: 100%;
+}
+.category-item {
+  padding: 10px;
+}
+
+.region-item {
+  width: 15%;
+  min-width: 100px;
+}
+
+.date-picker {
+  width: 25%;
+  min-width: 400px;
+}
+.ant-row {
+  flex-direction: column;
+}
+
 section {
   background-color: #ececec;
   padding: 30px;
+}
+
+.search-btn {
+  margin-left: auto;
 }
 </style>

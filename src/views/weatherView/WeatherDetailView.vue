@@ -44,7 +44,7 @@ fetchDateWeather();
     </div>
   </section>
   <section>
-    <WeatherDetailTab />
+    <WeatherDetailTab :dateWeatherData="dateWeatherData" />
   </section>
 </template>
 

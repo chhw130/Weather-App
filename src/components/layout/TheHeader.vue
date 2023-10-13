@@ -16,5 +16,7 @@ const goHomeHandler = () => {
 <style scoped>
 .logo {
   cursor: pointer;
+  font-size: 1.2rem;
+  display: inline;
 }
 </style>

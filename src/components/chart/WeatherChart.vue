@@ -97,7 +97,7 @@ const option = reactive<EChartsCoreOption>({
       name: '평균 기온',
       type: 'bar',
       tooltip: {
-        valueFormatter: function (value) {
+        valueFormatter: (value) => {
           return value + ' °C';
         },
       },
@@ -108,7 +108,7 @@ const option = reactive<EChartsCoreOption>({
       type: 'line',
       yAxisIndex: 1,
       tooltip: {
-        valueFormatter: function (value) {
+        valueFormatter: (value) => {
           return value + ' ml';
         },
       },
