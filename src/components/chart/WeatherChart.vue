@@ -29,22 +29,25 @@ const loadingStore = useLoadingStore();
 const weatherStore = useWeatherStore();
 const isLoading = computed(() => loadingStore.isLoading);
 
-const date = computed(() =>
-  weatherStore.weatherData.map((data) => {
-    return data.tm || 0;
-  })
+const date = computed(
+  () =>
+    weatherStore.weatherData?.map((data) => {
+      return data.tm || 0;
+    })
 );
 
-const avgTem = computed(() =>
-  weatherStore.weatherData.map((data) => {
-    return data.avgTa || 0;
-  })
+const avgTem = computed(
+  () =>
+    weatherStore.weatherData?.map((data) => {
+      return data.avgTa || 0;
+    })
 );
 
-const dateRainFall = computed(() =>
-  weatherStore.weatherData.map((data) => {
-    return data.sumRn || 0;
-  })
+const dateRainFall = computed(
+  () =>
+    weatherStore.weatherData?.map((data) => {
+      return data.sumRn || 0;
+    })
 );
 
 /**chart option */

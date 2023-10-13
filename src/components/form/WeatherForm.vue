@@ -5,6 +5,7 @@ import { useDate } from 'vue3-dayjs-plugin/useDate';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
+import { Dayjs } from 'dayjs';
 
 const formRef = ref();
 const date = useDate();
@@ -44,7 +45,6 @@ const formState = reactive<FormType>({
 
 /**date calculate/formate function */
 const calculateDate = (dateData: DateType[]): CalculateDate => {
-  console.log(dateData);
   const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
 
@@ -105,6 +105,10 @@ const rules = {
     },
   ],
 };
+
+const disabledDate = (current: Dayjs) => {
+  return current && current > date().endOf('day');
+};
 </script>
 
 <template>
@@ -140,6 +144,7 @@ const rules = {
       >
         <a-range-picker
           v-model:value="formState.date"
+          :disabled-date="disabledDate"
           required
           type="date"
           class="date-picker"
