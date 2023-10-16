@@ -1,40 +1,14 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import MenuBar from './components/layout/MenuBar.vue';
 import TheHeader from './components/layout/TheHeader.vue';
-import { ref } from 'vue';
 
 const router = useRouter();
 
-interface Route {
-  path: string;
-  breadcrumbName: string;
-  children?: Array<{
-    path: string;
-    breadcrumbName: string;
-  }>;
-}
+const route = useRoute();
+console.log(route.path);
 
-const routes = ref<Route[]>([
-  {
-    path: 'index',
-    breadcrumbName: 'home',
-  },
-  {
-    path: '/list',
-    breadcrumbName: '지역별 날씨',
-    children: [
-      {
-        path: '/list',
-        breadcrumbName: '목록',
-      },
-      {
-        path: '/chart',
-        breadcrumbName: '차트',
-      },
-    ],
-  },
-]);
+console.log(route.name);
 </script>
 
 <template>

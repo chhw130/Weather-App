@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useWeatherStore } from '@/utils/store/WeatherStore';
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { RouteRecordName, useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
@@ -10,7 +10,7 @@ const selectedKeys = ref<RouteRecordName[]>([route.name]);
 const openKeys = ref<string[]>([]);
 const weatherStore = useWeatherStore();
 
-console.log(route.name);
+console.log(route.name, selectedKeys);
 
 /**menu control function */
 const menuHandler = ({ key }: { key: string }) => {
@@ -18,6 +18,10 @@ const menuHandler = ({ key }: { key: string }) => {
   weatherStore.initWeather();
   return router.push({ name: `${key}` });
 };
+
+onBeforeMount(() => {
+  console.log(route.name);
+});
 </script>
 
 <template>
@@ -26,6 +30,7 @@ const menuHandler = ({ key }: { key: string }) => {
     v-model:selectedKeys="selectedKeys"
     v-model:openKeys="openKeys"
     mode="inline"
+    @click="menuHandler"
   >
     <a-sub-menu key="sub1">
       <template #title>
