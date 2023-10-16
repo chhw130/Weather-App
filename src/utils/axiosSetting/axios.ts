@@ -1,4 +1,5 @@
 import { SubmitData } from '@/components/form/WeatherForm.vue';
+import { message } from 'ant-design-vue';
 import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
@@ -42,7 +43,12 @@ export const getWeather = async (submitData: SubmitData) => {
 
     const err = header.resultMsg;
 
-    return data || alert(err);
+    if (!data) {
+      message.error(err);
+      return [];
+    }
+
+    return data;
   } catch {
     alert('다시 시도해주세요.');
   }
