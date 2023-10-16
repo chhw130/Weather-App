@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["webpack-env", "node"],
+    "types": ["webpack-env", "node", "vite/client"],
     "composite": true,
     "target": "esnext",
     "module": "esnext",
