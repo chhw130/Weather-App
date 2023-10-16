@@ -13,5 +13,8 @@ export const useWeatherStore = defineStore('weather', {
     updateWeather(state: WeatherType[] | void) {
       this.weatherData = state;
     },
+    initWeather() {
+      this.weatherData = [];
+    },
   },
 });

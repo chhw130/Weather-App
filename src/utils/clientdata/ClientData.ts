@@ -14,6 +14,11 @@ interface ColumnDataType {
   key: string;
 }
 
+interface DetailDataArrType {
+  label: string;
+  content: string;
+}
+
 export const menuData: MenuListType[] = [
   { title: '목록', link: '/list' },
   { title: '차트', link: '/chart' },
@@ -105,5 +110,74 @@ export const columnData: ColumnDataType[] = [
     title: '일강수량',
     key: 'sumRn',
     dataIndex: 'sumRn',
+  },
+];
+
+export const tempDataArr: DetailDataArrType[] = [
+  {
+    label: '평균기온',
+    content: 'avgTa',
+  },
+  { label: '최고 기온', content: 'maxTa' },
+  { label: '최고 기온 시간', content: 'maxTaHrmt' },
+  { label: '최저 기온', content: 'minTa' },
+  { label: '최저 기온 시간', content: 'minTaHrmt' },
+];
+
+export const wsDataArr: DetailDataArrType[] = [
+  {
+    label: '평균 풍속',
+    content: 'avgWs',
+  },
+  {
+    label: '최대 순간 풍속',
+    content: 'maxInsWs',
+  },
+  {
+    label: '최대 순간 풍속 풍향',
+    content: 'maxInsWsWd',
+  },
+  {
+    label: '최대 순간 풍속 시간',
+    content: 'maxInsWsHrmt',
+  },
+  {
+    label: '최대 풍속',
+    content: 'maxWs',
+  },
+  {
+    label: '최대 풍속 방향',
+    content: 'maxInsWsHrmt',
+  },
+  {
+    label: '최대 풍속 시간',
+    content: 'maxWsHrmt',
+  },
+  {
+    label: '최다 풍향',
+    content: 'maxWd',
+  },
+];
+
+export const rnDataArr: DetailDataArrType[] = [
+  {
+    label: '일 강수량',
+    content: 'sumRn',
+  },
+  {
+    label: '강수 계속시간',
+    content: 'sumRnDur',
+  },
+  {
+    label: '10분 최다 강수량',
+    content: 'mi10MaxRn',
+  },
+  {
+    label: '1시간 최다 강수량',
+    content: 'hr1MaxRn',
+  },
+  {
+    label: '1시간 최다 강수량 시간',
+    content: 'hr1MaxRnHrmt',
   },
 ];

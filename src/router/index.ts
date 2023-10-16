@@ -4,7 +4,7 @@ import WeatherListView from '@/views/weatherView/WeatherListView.vue';
 import WeatherChartView from '@/views/weatherView/WeatherChartView.vue';
 import WeatherDetailView from '@/views/weatherView/WeatherDetailView.vue';
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {

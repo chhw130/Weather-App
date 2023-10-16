@@ -1,22 +1,48 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import MenuBar from './components/layout/MenuBar.vue';
 import TheHeader from './components/layout/TheHeader.vue';
+import { ref } from 'vue';
 
-const route = useRoute();
+const router = useRouter();
+
+interface Route {
+  path: string;
+  breadcrumbName: string;
+  children?: Array<{
+    path: string;
+    breadcrumbName: string;
+  }>;
+}
+
+const routes = ref<Route[]>([
+  {
+    path: 'index',
+    breadcrumbName: 'home',
+  },
+  {
+    path: '/list',
+    breadcrumbName: '지역별 날씨',
+    children: [
+      {
+        path: '/list',
+        breadcrumbName: '목록',
+      },
+      {
+        path: '/chart',
+        breadcrumbName: '차트',
+      },
+    ],
+  },
+]);
 </script>
 
 <template>
   <a-layout class="main">
     <TheHeader />
-    <a-layout>
+    <a-layout class="main-section">
       <MenuBar />
       <a-layout style="padding: 30px">
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>지역별 날씨</a-breadcrumb-item>
-          <a-breadcrumb-item>{{ route.name }}</a-breadcrumb-item>
-        </a-breadcrumb>
         <a-layout-content>
           <RouterView />
         </a-layout-content>
@@ -28,6 +54,10 @@ const route = useRoute();
 <style scoped>
 .main {
   height: 100%;
+}
+
+.main-section {
+  flex-direction: row;
 }
 .ant-layout-header {
   background-color: rgb(236, 236, 236);

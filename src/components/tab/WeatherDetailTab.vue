@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { WeatherType } from '@/utils/axiosSetting/axios';
+import {
+  rnDataArr,
+  tempDataArr,
+  wsDataArr,
+} from '@/utils/clientdata/ClientData';
 
 const { dateWeatherData } = defineProps<WeatherDetailTabProps>();
 const activeKey = ref('1');
@@ -8,80 +13,6 @@ const activeKey = ref('1');
 interface WeatherDetailTabProps {
   dateWeatherData: WeatherType;
 }
-
-interface DataArrType {
-  label: string;
-  content: string;
-}
-
-const tempDataArr: DataArrType[] = [
-  {
-    label: '평균기온',
-    content: 'avgTa',
-  },
-  { label: '최고 기온', content: 'maxTa' },
-  { label: '최고 기온 시간', content: 'maxTaHrmt' },
-  { label: '최저 기온', content: 'minTa' },
-  { label: '최저 기온 시간', content: 'minTaHrmt' },
-];
-
-const wsDataArr: DataArrType[] = [
-  {
-    label: '평균 풍속',
-    content: 'avgWs',
-  },
-  {
-    label: '최대 순간 풍속',
-    content: 'maxInsWs',
-  },
-  {
-    label: '최대 순간 풍속 풍향',
-    content: 'maxInsWsWd',
-  },
-  {
-    label: '최대 순간 풍속 시간',
-    content: 'maxInsWsHrmt',
-  },
-  {
-    label: '최대 풍속',
-    content: 'maxWs',
-  },
-  {
-    label: '최대 풍속 방향',
-    content: 'maxInsWsHrmt',
-  },
-  {
-    label: '최대 풍속 시간',
-    content: 'maxWsHrmt',
-  },
-  {
-    label: '최다 풍향',
-    content: 'maxWd',
-  },
-];
-
-const rnDataArr: DataArrType[] = [
-  {
-    label: '일 강수량',
-    content: 'sumRn',
-  },
-  {
-    label: '강수 계속시간',
-    content: 'sumRnDur',
-  },
-  {
-    label: '10분 최다 강수량',
-    content: 'mi10MaxRn',
-  },
-  {
-    label: '1시간 최다 강수량',
-    content: 'hr1MaxRn',
-  },
-  {
-    label: '1시간 최다 강수량 시간',
-    content: 'hr1MaxRnHrmt',
-  },
-];
 </script>
 <template>
   <a-tabs v-model:activeKey="activeKey">
@@ -111,7 +42,10 @@ const rnDataArr: DataArrType[] = [
     </a-tab-pane>
     <a-tab-pane key="3" tab="강수">
       <section class="detail-section">
-        <div v-if="!dateWeatherData.sumRn">데이터가 없습니다.</div>
+        <template v-if="!dateWeatherData.sumRn">
+          <a-result class="result" status="warning" title="데이터가 없습니다.">
+          </a-result>
+        </template>
         <template v-else>
           <div
             class="title-category"
@@ -143,5 +77,9 @@ const rnDataArr: DataArrType[] = [
   width: 20%;
   font-size: 1.2rem;
   line-height: 3;
+}
+
+.result {
+  margin: 0 auto;
 }
 </style>

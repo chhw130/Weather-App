@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const goHomeHandler = () => {
-  return router.push('/');
+  return router.push('/list');
 };
 </script>
 <template>

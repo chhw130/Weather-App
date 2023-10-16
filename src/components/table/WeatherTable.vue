@@ -17,6 +17,7 @@ const weatherTableData = computed(() => weatherStore.weatherData);
 const goDetailView = (tm: string) => {
   const regionId = weatherTableData?.value[0].stnId;
   const regionName = weatherTableData?.value[0].stnNm;
+
   const queryData = {
     date: tm,
     regionId,
