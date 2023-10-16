@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
 import WeatherListView from '@/views/weatherView/WeatherListView.vue';
 import WeatherChartView from '@/views/weatherView/WeatherChartView.vue';
 import WeatherDetailView from '@/views/weatherView/WeatherDetailView.vue';
@@ -7,11 +6,6 @@ import WeatherDetailView from '@/views/weatherView/WeatherDetailView.vue';
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-    },
     {
       path: '/list',
       name: 'list',

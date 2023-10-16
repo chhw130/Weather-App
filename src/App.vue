@@ -1,14 +1,6 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
 import MenuBar from './components/layout/MenuBar.vue';
 import TheHeader from './components/layout/TheHeader.vue';
-
-const router = useRouter();
-
-const route = useRoute();
-console.log(route.path);
-
-console.log(route.name);
 </script>
 
 <template>

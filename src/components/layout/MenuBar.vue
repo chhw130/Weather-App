@@ -7,10 +7,15 @@ const route = useRoute();
 const router = useRouter();
 
 const selectedKeys = ref<RouteRecordName[]>([route.name]);
-const openKeys = ref<string[]>([]);
+const openKeys = ref<string[]>(['sub1']);
 const weatherStore = useWeatherStore();
 
-console.log(route.name, selectedKeys);
+/**get route path  */
+onBeforeMount(async () => {
+  await router.isReady();
+  console.log(route.name);
+  selectedKeys.value = [route.name];
+});
 
 /**menu control function */
 const menuHandler = ({ key }: { key: string }) => {
@@ -18,10 +23,6 @@ const menuHandler = ({ key }: { key: string }) => {
   weatherStore.initWeather();
   return router.push({ name: `${key}` });
 };
-
-onBeforeMount(() => {
-  console.log(route.name);
-});
 </script>
 
 <template>
