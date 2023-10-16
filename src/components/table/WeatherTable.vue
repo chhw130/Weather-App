@@ -29,19 +29,16 @@ const goDetailView = (tm: string) => {
 </script>
 <template>
   <section>
+    <a-menu component="li"></a-menu>
     <SpinnerUI v-if="isLoading" />
     <a-table v-else :columns="columnData" :data-source="weatherTableData">
       <template #tm="{ tm }">
         <a>{{ tm }}</a>
       </template>
-      <template #customTitle>
-        <span> 날짜 </span>
-      </template>
+
       <template #tags="{ text: tags }">
         <span>
-          <a-tag v-for="tag in tags" :key="tag">
-            {{ tag.toUpperCase() }}
-          </a-tag>
+          <a-tag v-for="tag in tags" :key="tag"> {{ tag }}234 </a-tag>
         </span>
       </template>
 

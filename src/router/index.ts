@@ -7,9 +7,20 @@ export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      redirect: '/list',
+    },
+    {
       path: '/list',
       name: 'list',
       component: WeatherListView,
+      children: [
+        {
+          path: 'detail',
+          name: 'detail',
+          component: WeatherDetailView,
+        },
+      ],
     },
     {
       path: '/chart',
@@ -17,7 +28,7 @@ export const router = createRouter({
       component: WeatherChartView,
     },
     {
-      path: '/detail',
+      path: '/list/detail',
       name: 'detail',
       component: WeatherDetailView,
     },

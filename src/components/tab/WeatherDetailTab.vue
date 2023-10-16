@@ -15,50 +15,56 @@ interface WeatherDetailTabProps {
 }
 </script>
 <template>
-  <a-tabs v-model:activeKey="activeKey">
-    <a-tab-pane key="1" tab="기온" class="panel">
-      <section class="detail-section">
-        <div
-          class="title-category"
-          v-for="tempData in tempDataArr"
-          :key="tempData.content"
-        >
-          <strong>{{ tempData.label }}</strong>
-          <p>{{ dateWeatherData[tempData.content] }}</p>
-        </div>
-      </section>
-    </a-tab-pane>
-    <a-tab-pane key="2" tab="풍량" force-render>
-      <section class="detail-section">
-        <div
-          class="title-category"
-          v-for="wsData in wsDataArr"
-          :key="wsData.content"
-        >
-          <strong>{{ wsData.label }}</strong>
-          <p>{{ dateWeatherData[wsData.content] }}</p>
-        </div>
-      </section>
-    </a-tab-pane>
-    <a-tab-pane key="3" tab="강수">
-      <section class="detail-section">
-        <template v-if="!dateWeatherData.sumRn">
-          <a-result class="result" status="warning" title="데이터가 없습니다.">
-          </a-result>
-        </template>
-        <template v-else>
+  <section>
+    <a-tabs v-model:activeKey="activeKey">
+      <a-tab-pane key="1" tab="기온" class="panel">
+        <article class="detail-section">
           <div
             class="title-category"
-            v-for="rnData in rnDataArr"
-            :key="rnData.content"
+            v-for="tempData in tempDataArr"
+            :key="tempData.content"
           >
-            <strong>{{ rnData.label }}</strong>
-            <p>{{ dateWeatherData[rnData.content] }}</p>
+            <strong>{{ tempData.label }}</strong>
+            <p>{{ dateWeatherData[tempData.content] }}</p>
           </div>
-        </template>
-      </section>
-    </a-tab-pane>
-  </a-tabs>
+        </article>
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="풍량" force-render>
+        <article class="detail-section">
+          <div
+            class="title-category"
+            v-for="wsData in wsDataArr"
+            :key="wsData.content"
+          >
+            <strong>{{ wsData.label }}</strong>
+            <p>{{ dateWeatherData[wsData.content] }}</p>
+          </div>
+        </article>
+      </a-tab-pane>
+      <a-tab-pane key="3" tab="강수">
+        <article class="detail-section">
+          <template v-if="!dateWeatherData.sumRn">
+            <a-result
+              class="result"
+              status="warning"
+              title="데이터가 없습니다."
+            >
+            </a-result>
+          </template>
+          <template v-else>
+            <div
+              class="title-category"
+              v-for="rnData in rnDataArr"
+              :key="rnData.content"
+            >
+              <strong>{{ rnData.label }}</strong>
+              <p>{{ dateWeatherData[rnData.content] }}</p>
+            </div>
+          </template>
+        </article>
+      </a-tab-pane>
+    </a-tabs>
+  </section>
 </template>
 
 <style scoped>

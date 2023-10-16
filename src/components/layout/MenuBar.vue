@@ -6,6 +6,8 @@ import { RouteRecordName, useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
+console.log(route.name);
+
 const selectedKeys = ref<RouteRecordName[]>([route.name]);
 const openKeys = ref<string[]>(['sub1']);
 const weatherStore = useWeatherStore();
@@ -13,13 +15,11 @@ const weatherStore = useWeatherStore();
 /**get route path  */
 onBeforeMount(async () => {
   await router.isReady();
-  console.log(route.name);
   selectedKeys.value = [route.name];
 });
 
 /**menu control function */
 const menuHandler = ({ key }: { key: string }) => {
-  selectedKeys.value = [key];
   weatherStore.initWeather();
   return router.push({ name: `${key}` });
 };
@@ -45,7 +45,7 @@ const menuHandler = ({ key }: { key: string }) => {
 
 <style scoped>
 .menu-bar {
-  width: 300px;
+  width: 230px;
 }
 .ant-layout-sider {
   height: 100%;

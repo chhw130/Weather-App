@@ -82,32 +82,32 @@ export const columnData: ColumnDataType[] = [
     key: 'tm',
   },
   {
-    title: '평균 기온',
+    title: '평균 기온 (°C)',
     key: 'avgTa',
     dataIndex: 'avgTa',
   },
   {
-    title: '최고 기온',
+    title: '최고 기온 (°C)',
     key: 'maxTa',
     dataIndex: 'maxTa',
   },
   {
-    title: '최고 기온 시간',
+    title: '최고 기온 시간 (hhmi)',
     key: 'maxTaHrmt',
     dataIndex: 'maxTaHrmt',
   },
   {
-    title: '최저 기온',
+    title: '최저 기온 (°C) ',
     key: 'minTa',
     dataIndex: 'minTa',
   },
   {
-    title: '최저 기온 시간',
+    title: '최저 기온 시간 (hhmi)',
     key: 'minTaHrmt',
     dataIndex: 'minTaHrmt',
   },
   {
-    title: '일강수량',
+    title: '일강수량 (mm)',
     key: 'sumRn',
     dataIndex: 'sumRn',
   },
@@ -115,69 +115,87 @@ export const columnData: ColumnDataType[] = [
 
 export const tempDataArr: DetailDataArrType[] = [
   {
-    label: '평균기온',
+    label: '평균기온 (°C)',
     content: 'avgTa',
   },
-  { label: '최고 기온', content: 'maxTa' },
-  { label: '최고 기온 시간', content: 'maxTaHrmt' },
-  { label: '최저 기온', content: 'minTa' },
-  { label: '최저 기온 시간', content: 'minTaHrmt' },
+  { label: '최고 기온 (°C)', content: 'maxTa' },
+  { label: '최고 기온 시간 (hhmi)', content: 'maxTaHrmt' },
+  { label: '최저 기온 (°C)', content: 'minTa' },
+  { label: '최저 기온 시간 (hhmi)', content: 'minTaHrmt' },
 ];
 
 export const wsDataArr: DetailDataArrType[] = [
   {
-    label: '평균 풍속',
+    label: '평균 풍속 (m/s)',
     content: 'avgWs',
   },
   {
-    label: '최대 순간 풍속',
+    label: '최대 순간 풍속 (m/s)',
     content: 'maxInsWs',
   },
   {
-    label: '최대 순간 풍속 풍향',
+    label: '최대 순간 풍속 풍향 (16방위)',
     content: 'maxInsWsWd',
   },
   {
-    label: '최대 순간 풍속 시간',
+    label: '최대 순간 풍속 시간 (hhmi)',
     content: 'maxInsWsHrmt',
   },
   {
-    label: '최대 풍속',
+    label: '최대 풍속 (m/s)',
     content: 'maxWs',
   },
   {
-    label: '최대 풍속 방향',
+    label: '최대 풍속 방향 (hhmi)',
     content: 'maxInsWsHrmt',
   },
   {
-    label: '최대 풍속 시간',
+    label: '최대 풍속 시간 (hhmi)',
     content: 'maxWsHrmt',
   },
   {
-    label: '최다 풍향',
+    label: '최다 풍향 (16방위)',
     content: 'maxWd',
   },
 ];
 
 export const rnDataArr: DetailDataArrType[] = [
   {
-    label: '일 강수량',
+    label: '일 강수량 (mm)',
     content: 'sumRn',
   },
   {
-    label: '강수 계속시간',
+    label: '강수 계속시간 (hr)',
     content: 'sumRnDur',
   },
   {
-    label: '10분 최다 강수량',
+    label: '10분 최다 강수량 (mm)',
     content: 'mi10MaxRn',
   },
   {
-    label: '1시간 최다 강수량',
+    label: '1시간 최다 강수량 (mm)',
     content: 'hr1MaxRn',
   },
   {
-    label: '1시간 최다 강수량 시간',
+    label: '1시간 최다 강수량 시간 (hr)',
     content: 'hr1MaxRnHrmt',
   },
 ];
+
+/**Form validation rule */
+export const rules = {
+  date: [
+    {
+      required: true,
+      message: '날짜를 선택해주세요.',
+      trigger: 'change',
+    },
+  ],
+  region: [
+    {
+      required: true,
+      message: '지역을 선택해주세요.',
+      trigger: 'change',
+    },
+  ],
+};

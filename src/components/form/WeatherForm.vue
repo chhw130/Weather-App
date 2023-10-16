@@ -6,6 +6,7 @@ import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
 import { Dayjs } from 'dayjs';
+import { rules } from '@/utils/clientdata/ClientData';
 
 const formRef = ref();
 const date = useDate();
@@ -13,7 +14,7 @@ const weatherStore = useWeatherStore();
 const loadingStore = useLoadingStore();
 
 interface FormType {
-  region: number;
+  region: string;
   date: DateType[];
 }
 
@@ -88,27 +89,11 @@ const submitHandler = () => {
     });
 };
 
-/**Form validation rule */
-const rules = {
-  date: [
-    {
-      required: true,
-      message: '날짜를 선택해주세요.',
-      trigger: 'change',
-    },
-  ],
-  region: [
-    {
-      required: true,
-      message: '지역을 선택해주세요.',
-      trigger: 'change',
-    },
-  ],
-};
-
+/**calendar validation */
 const disabledDate = (current: Dayjs) => {
   const today = new Date();
-  return current && current >= date(today).endOf('day');
+  const yesterday = new Date(today.setDate(today.getDate() - 1));
+  return current >= date(yesterday).endOf('day');
 };
 </script>
 
@@ -130,8 +115,10 @@ const disabledDate = (current: Dayjs) => {
         <a-select v-model:value="formState.region">
           <a-select-option
             v-for="region in regionData"
+            label-in-value
             :key="region"
             :value="region.stnlds"
+            :defaultValue="region"
             >{{ region.region }}</a-select-option
           >
         </a-select>

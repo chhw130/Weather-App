@@ -46,7 +46,7 @@ const avgTem = computed(
 const dateRainFall = computed(
   () =>
     weatherStore.weatherData?.map((data) => {
-      return data.sumRn || 0;
+      return data.sumRn || '';
     })
 );
 
@@ -77,9 +77,9 @@ const option = reactive<EChartsCoreOption>({
     {
       type: 'value',
       name: '평균 기온',
-      min: 10,
-      max: 28,
-      interval: 2,
+      min: -16,
+      max: 32,
+      interval: 8,
       axisLabel: {
         formatter: '{value} °C',
       },
@@ -87,9 +87,9 @@ const option = reactive<EChartsCoreOption>({
     {
       type: 'value',
       name: '일 강수량',
-      min: 10,
-      max: 50,
-      interval: 4,
+      min: 0,
+      max: 96,
+      interval: 16,
       axisLabel: {
         formatter: '{value} ml',
       },
@@ -98,7 +98,7 @@ const option = reactive<EChartsCoreOption>({
   series: [
     {
       name: '평균 기온',
-      type: 'bar',
+      type: 'line',
       tooltip: {
         valueFormatter: (value) => {
           return value + ' °C';
@@ -108,7 +108,7 @@ const option = reactive<EChartsCoreOption>({
     },
     {
       name: '일 강수량',
-      type: 'line',
+      type: 'bar',
       yAxisIndex: 1,
       tooltip: {
         valueFormatter: (value) => {

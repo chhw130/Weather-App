@@ -55,12 +55,8 @@ const fetchDateWeather = async () => {
 fetchDateWeather();
 </script>
 <template>
-  <section class="detail-section">
-    <DetailSubject />
-  </section>
-  <section>
-    <WeatherDetailTab :dateWeatherData="dateWeatherData" />
-  </section>
+  <DetailSubject />
+  <WeatherDetailTab :dateWeatherData="dateWeatherData" />
 </template>
 
 <style scoped>
