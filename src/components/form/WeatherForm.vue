@@ -7,6 +7,11 @@ import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
 import { Dayjs } from 'dayjs';
 import { rules } from '@/utils/clientdata/ClientData';
+import {
+  CalculateDateType,
+  SubmitDataType,
+  DayJSType,
+} from '@/utils/type/type';
 
 const formRef = ref();
 const date = useDate();
@@ -15,28 +20,7 @@ const loadingStore = useLoadingStore();
 
 interface FormType {
   region: string;
-  date: DateType[];
-}
-
-interface DateType {
-  $L: string;
-  $u: string;
-  $H: number;
-  $D: number;
-  $M: number;
-  $W: number;
-  $d: Date;
-  $isDayjsObject: boolean;
-}
-
-interface CalculateDate {
-  firstDate: string;
-  lastDate: string;
-  dateDiff: number;
-}
-
-export interface SubmitData extends CalculateDate {
-  region: number | string | string[];
+  date: DayJSType[];
 }
 
 const formState = reactive<FormType>({
@@ -45,7 +29,7 @@ const formState = reactive<FormType>({
 });
 
 /**date calculate/formate function */
-const calculateDate = (dateData: DateType[]): CalculateDate => {
+const calculateDate = (dateData: DayJSType[]): CalculateDateType => {
   const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
 
@@ -70,7 +54,7 @@ const submitHandler = () => {
       const { firstDate, lastDate, dateDiff } = calculateDate(dateData);
 
       /**data fetching */
-      const submitData: SubmitData = {
+      const submitData: SubmitDataType = {
         firstDate,
         lastDate,
         dateDiff,

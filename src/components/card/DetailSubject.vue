@@ -2,6 +2,7 @@
 import { reactive } from 'vue';
 import { LocationQuery, useRoute } from 'vue-router';
 
+/**!! */
 const route = useRoute();
 console.log(route.name);
 

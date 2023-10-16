@@ -91,7 +91,7 @@ const option = reactive<EChartsCoreOption>({
       max: 96,
       interval: 16,
       axisLabel: {
-        formatter: '{value} ml',
+        formatter: '{value} mm',
       },
     },
   ],
@@ -100,7 +100,7 @@ const option = reactive<EChartsCoreOption>({
       name: '평균 기온',
       type: 'line',
       tooltip: {
-        valueFormatter: (value) => {
+        valueFormatter: (value: string) => {
           return value + ' °C';
         },
       },
@@ -111,8 +111,8 @@ const option = reactive<EChartsCoreOption>({
       type: 'bar',
       yAxisIndex: 1,
       tooltip: {
-        valueFormatter: (value) => {
-          return value + ' ml';
+        valueFormatter: (value: string) => {
+          return value + ' mm';
         },
       },
       data: dateRainFall,

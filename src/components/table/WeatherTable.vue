@@ -29,7 +29,6 @@ const goDetailView = (tm: string) => {
 </script>
 <template>
   <section>
-    <a-menu component="li"></a-menu>
     <SpinnerUI v-if="isLoading" />
     <a-table v-else :columns="columnData" :data-source="weatherTableData">
       <template #tm="{ tm }">
