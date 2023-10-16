@@ -107,7 +107,8 @@ const rules = {
 };
 
 const disabledDate = (current: Dayjs) => {
-  return current && current > date().endOf('day');
+  const today = new Date();
+  return current && current >= date(today).endOf('day');
 };
 </script>
 
