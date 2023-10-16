@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import WeatherListView from '@/views/weatherView/WeatherListView.vue';
-import WeatherChartView from '@/views/weatherView/WeatherChartView.vue';
-import WeatherDetailView from '@/views/weatherView/WeatherDetailView.vue';
 
+/**tree shaking */
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -13,24 +11,17 @@ export const router = createRouter({
     {
       path: '/list',
       name: 'list',
-      component: WeatherListView,
-      children: [
-        {
-          path: 'detail',
-          name: 'detail',
-          component: WeatherDetailView,
-        },
-      ],
+      component: () => import('@/views/weatherView/WeatherListView.vue'),
     },
     {
       path: '/chart',
       name: 'chart',
-      component: WeatherChartView,
+      component: () => import('@/views/weatherView/WeatherChartView.vue'),
     },
     {
       path: '/list/detail',
       name: 'detail',
-      component: WeatherDetailView,
+      component: () => import('@/views/weatherView/WeatherDetailView.vue'),
     },
   ],
 });
