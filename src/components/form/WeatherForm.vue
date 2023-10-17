@@ -28,7 +28,7 @@ const formState = ref<FormType>({
   date: undefined,
 });
 
-/**date calculate/formate function */
+/**date calculate/format function */
 const calculateDate = (dateData: DayJSType[]): CalculateDateType => {
   const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;

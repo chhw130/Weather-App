@@ -14,7 +14,7 @@ interface ColumnDataType {
   key: string;
 }
 
-interface DetailDataArrType {
+export interface DetailDataArrType {
   label: string;
   content: string;
 }

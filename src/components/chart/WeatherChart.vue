@@ -27,6 +27,7 @@ const loadingStore = useLoadingStore();
 const weatherStore = useWeatherStore();
 const isLoading = computed(() => loadingStore.isLoading);
 
+/**data construct */
 const date = computed(
   () =>
     weatherStore.weatherData?.map((data) => {

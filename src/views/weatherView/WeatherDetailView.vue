@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import WeatherDetailTab from '@/components/tab/WeatherDetailTab.vue';
-import DetailSubject from '@/components/card/DetailSubject.vue';
+import DetailSubject from '@/components/card/DetailSubjectCard.vue';
 import { WeatherType, getWeather } from '@/utils/axiosSetting/axios';
 import { reactive, ref } from 'vue';
 import { LocationQuery, useRoute } from 'vue-router';
@@ -8,8 +8,6 @@ import { useDate } from 'vue3-dayjs-plugin/useDate';
 
 const route = useRoute();
 const date = useDate();
-
-console.log(route.name);
 
 const queryData = reactive<LocationQuery>(route.query);
 const dateWeatherData = ref<WeatherType>({

@@ -36,7 +36,7 @@ const goDetailView = (tm: string) => {
 
       <template #tags="{ text: tags }">
         <span>
-          <a-tag v-for="tag in tags" :key="tag"> {{ tag }}234 </a-tag>
+          <a-tag v-for="tag in tags" :key="tag"> {{ tag }} </a-tag>
         </span>
       </template>
 
