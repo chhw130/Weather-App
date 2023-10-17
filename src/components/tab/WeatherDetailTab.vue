@@ -81,7 +81,7 @@ interface WeatherDetailTabProps {
 
 .title-category {
   width: 20%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 3;
 }
 
