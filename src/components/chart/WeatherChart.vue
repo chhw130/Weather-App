@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { use } from 'echarts/core';
-import { CanvasRenderer } from 'echarts/renderers';
+import { SVGRenderer } from 'echarts/renderers';
 import { BarChart, LineChart } from 'echarts/charts';
 import {
   TooltipComponent,
   LegendComponent,
   GridComponent,
-  ToolboxComponent,
 } from 'echarts/components';
 import VChart from 'vue-echarts';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
@@ -16,13 +15,12 @@ import SpinnerUI from '../UX/SpinnerUI.vue';
 import { EChartsCoreOption } from 'echarts';
 
 use([
-  ToolboxComponent,
   TooltipComponent,
   GridComponent,
   LegendComponent,
   BarChart,
   LineChart,
-  CanvasRenderer,
+  SVGRenderer,
 ]);
 
 const loadingStore = useLoadingStore();
@@ -32,21 +30,21 @@ const isLoading = computed(() => loadingStore.isLoading);
 const date = computed(
   () =>
     weatherStore.weatherData?.map((data) => {
-      return data.tm || 0;
+      return data.tm;
     })
 );
 
 const avgTem = computed(
   () =>
     weatherStore.weatherData?.map((data) => {
-      return data.avgTa || 0;
+      return data.avgTa;
     })
 );
 
 const dateRainFall = computed(
   () =>
     weatherStore.weatherData?.map((data) => {
-      return data.sumRn || '';
+      return data.sumRn;
     })
 );
 
