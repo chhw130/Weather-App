@@ -6,8 +6,6 @@ import { RouteRecordName, useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-console.log(route.name);
-
 const selectedKeys = ref<RouteRecordName[]>([route.name]);
 const openKeys = ref<string[]>(['sub1']);
 const weatherStore = useWeatherStore();
@@ -16,6 +14,7 @@ const weatherStore = useWeatherStore();
 onBeforeMount(async () => {
   await router.isReady();
   selectedKeys.value = [route.name];
+  // console.log(route, route.name);
 });
 
 /**menu control function */

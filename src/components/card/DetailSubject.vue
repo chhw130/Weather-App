@@ -2,9 +2,7 @@
 import { reactive } from 'vue';
 import { LocationQuery, useRoute } from 'vue-router';
 
-/**!! */
 const route = useRoute();
-console.log(route.name);
 
 const queryData = reactive<LocationQuery>(route.query);
 </script>

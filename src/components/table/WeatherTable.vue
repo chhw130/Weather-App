@@ -23,7 +23,6 @@ const goDetailView = (tm: string) => {
     regionId,
     regionName,
   };
-
   return router.push({ name: 'detail', query: queryData });
 };
 </script>

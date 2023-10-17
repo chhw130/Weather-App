@@ -8,7 +8,7 @@ import {
 } from '@/utils/clientdata/ClientData';
 
 const { dateWeatherData } = defineProps<WeatherDetailTabProps>();
-const activeKey = ref('1');
+const activeKey = ref<string>('1');
 
 interface WeatherDetailTabProps {
   dateWeatherData: WeatherType;

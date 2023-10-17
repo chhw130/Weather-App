@@ -9,6 +9,8 @@ import { useDate } from 'vue3-dayjs-plugin/useDate';
 const route = useRoute();
 const date = useDate();
 
+console.log(route.name);
+
 const queryData = reactive<LocationQuery>(route.query);
 const dateWeatherData = ref<WeatherType>({
   avgTa: '',

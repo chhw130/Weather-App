@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import { getWeather } from '@/utils/axiosSetting/axios';
 import { useDate } from 'vue3-dayjs-plugin/useDate';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
@@ -23,7 +23,7 @@ interface FormType {
   date: DayJSType[];
 }
 
-const formState = reactive<FormType>({
+const formState = ref<FormType>({
   region: undefined,
   date: undefined,
 });
@@ -33,8 +33,8 @@ const calculateDate = (dateData: DayJSType[]): CalculateDateType => {
   const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
   const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
 
-  const date1 = date(firstDate);
-  const date2 = date(lastDate);
+  const date1: Dayjs = date(firstDate);
+  const date2: Dayjs = date(lastDate);
 
   const dateDiff: number = date2.diff(date1, 'day') + 1;
 
@@ -50,7 +50,7 @@ const submitHandler = () => {
       loadingStore.updateLoading();
 
       /**formatting date */
-      const dateData = formState.date;
+      const dateData = formState.value.date;
       const { firstDate, lastDate, dateDiff } = calculateDate(dateData);
 
       /**data fetching */
@@ -58,7 +58,7 @@ const submitHandler = () => {
         firstDate,
         lastDate,
         dateDiff,
-        region: formState.region,
+        region: formState.value.region,
       };
       const data = await getWeather(submitData);
 
