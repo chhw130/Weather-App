@@ -17,7 +17,7 @@ const activeKey = ref<string>('1');
 
 <template>
   <section>
-    <a-tabs v-model:activeKey="activeKey">
+    <a-tabs v-model:activeKey="activeKey" class="tap-section">
       <a-tab-pane key="1" tab="기온" class="panel">
         <WeatherDetailTabContent
           :dateWeatherData="dateWeatherData"
@@ -42,6 +42,9 @@ const activeKey = ref<string>('1');
 </template>
 
 <style scoped>
+.tap-section {
+  margin-top: 30px;
+}
 .panel {
   height: 200px;
 }

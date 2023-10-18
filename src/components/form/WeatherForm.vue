@@ -14,14 +14,13 @@ import {
 import { FormInstance } from 'ant-design-vue';
 import * as dayjs from 'dayjs';
 
-const formRef = ref<FormInstance>();
-const weatherStore = useWeatherStore();
-const loadingStore = useLoadingStore();
-
 interface FormType {
   region: string;
   date: DayJSType[];
 }
+const formRef = ref<FormInstance>();
+const weatherStore = useWeatherStore();
+const loadingStore = useLoadingStore();
 
 const formState = ref<FormType>({
   region: undefined,

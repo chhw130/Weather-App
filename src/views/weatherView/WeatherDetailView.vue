@@ -6,6 +6,13 @@ import { reactive, ref } from 'vue';
 import { LocationQuery, useRoute } from 'vue-router';
 import { useDate } from 'vue3-dayjs-plugin/useDate';
 
+interface SubmitDataType {
+  dateDiff: number;
+  firstDate: string;
+  lastDate: string;
+  region: string | string[];
+}
+
 const route = useRoute();
 const date = useDate();
 
@@ -32,13 +39,6 @@ const dateWeatherData = ref<WeatherType>({
   hr1MaxRn: '',
   hr1MaxRnHrmt: '',
 });
-
-interface SubmitDataType {
-  dateDiff: number;
-  firstDate: string;
-  lastDate: string;
-  region: string | string[];
-}
 
 const submitData: SubmitDataType = {
   dateDiff: 1,

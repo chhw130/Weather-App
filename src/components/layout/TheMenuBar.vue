@@ -6,7 +6,7 @@ import { RouteRecordName, useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-const selectedKeys = ref<RouteRecordName[]>([route.name]);
+const selectedKeys = ref<RouteRecordName[]>([]);
 const openKeys = ref<string[]>(['sub1']);
 const weatherStore = useWeatherStore();
 

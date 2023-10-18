@@ -129,7 +129,7 @@ const option = reactive<EChartsCoreOption>({
 
 <style scoped>
 .chart {
-  height: 400px;
+  height: 100%;
   width: 100%;
 }
 
@@ -138,6 +138,6 @@ section {
   background-color: #ececec;
   margin: 30px 0 0 0;
   padding: 30px;
-  height: 400px;
+  height: 75%;
 }
 </style>

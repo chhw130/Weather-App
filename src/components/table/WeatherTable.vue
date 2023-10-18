@@ -33,7 +33,7 @@ const goDetailView = (tm: string) => {
       v-else
       :columns="columnData"
       :data-source="weatherTableData"
-      :pagination="{ pageSize: 5 }"
+      :pagination="{ pageSize: 10 }"
       class="table"
     >
       <template #tm="{ tm }">
@@ -69,6 +69,7 @@ const goDetailView = (tm: string) => {
 }
 .table {
   width: 100%;
+  height: 100%;
 }
 .spinner {
   text-align: center;
