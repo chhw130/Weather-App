@@ -4,8 +4,4 @@
   </div>
 </template>
 
-<style scoped>
-.spinner {
-  margin: auto auto;
-}
-</style>
+<style scoped></style>

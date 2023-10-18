@@ -27,9 +27,15 @@ const goDetailView = (tm: string) => {
 };
 </script>
 <template>
-  <section>
+  <section class="table-section">
     <SpinnerUI v-if="isLoading" />
-    <a-table v-else :columns="columnData" :data-source="weatherTableData">
+    <a-table
+      v-else
+      :columns="columnData"
+      :data-source="weatherTableData"
+      :pagination="{ pageSize: 5 }"
+      class="table"
+    >
       <template #tm="{ tm }">
         <a>{{ tm }}</a>
       </template>
@@ -52,10 +58,17 @@ const goDetailView = (tm: string) => {
 </template>
 
 <style scoped>
-section {
+.table-section {
   background-color: #ececec;
   margin: 30px 0 0 0;
   padding: 30px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table {
+  width: 100%;
 }
 .spinner {
   text-align: center;

@@ -14,6 +14,7 @@ interface WeatherDetailTabProps {
 const { dateWeatherData } = defineProps<WeatherDetailTabProps>();
 const activeKey = ref<string>('1');
 </script>
+
 <template>
   <section>
     <a-tabs v-model:activeKey="activeKey">
@@ -33,7 +34,7 @@ const activeKey = ref<string>('1');
         <WeatherDetailTabContent
           :dateWeatherData="dateWeatherData"
           :detailDatas="rnDataArr"
-          :isDataOption="true"
+          :isOptionData="true"
         />
       </a-tab-pane>
     </a-tabs>

@@ -1,5 +1,17 @@
+<script setup lang="ts">
+import { WeatherType } from '@/utils/axiosSetting/axios';
+import { DetailDataArrType } from '@/utils/clientdata/ClientData';
+
+interface WeatherDetailTabProps {
+  dateWeatherData: WeatherType;
+  detailDatas: DetailDataArrType[];
+  isOptionData?: boolean;
+}
+const { dateWeatherData, detailDatas, isOptionData } =
+  defineProps<WeatherDetailTabProps>();
+</script>
 <template>
-  <template v-if="isDataOption && !dateWeatherData.sumRn">
+  <template v-if="isOptionData && !dateWeatherData.sumRn">
     <a-result class="result" status="warning" title="데이터가 없습니다.">
     </a-result>
   </template>
@@ -16,18 +28,7 @@
     </article>
   </template>
 </template>
-<script setup lang="ts">
-import { WeatherType } from '@/utils/axiosSetting/axios';
-import { DetailDataArrType } from '@/utils/clientdata/ClientData';
 
-interface WeatherDetailTabProps {
-  dateWeatherData: WeatherType;
-  detailDatas: DetailDataArrType[];
-  isDataOption?: boolean;
-}
-const { dateWeatherData, detailDatas, isDataOption } =
-  defineProps<WeatherDetailTabProps>();
-</script>
 <style scoped>
 .detail-section {
   background-color: #ececec;

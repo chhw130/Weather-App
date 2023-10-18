@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { getWeather } from '@/utils/axiosSetting/axios';
-import { useDate } from 'vue3-dayjs-plugin/useDate';
 import { useWeatherStore } from '@/utils/store/WeatherStore';
 import { useLoadingStore } from '@/utils/store/LoadingStore';
 import { regionData } from '@/utils/clientdata/ClientData';
@@ -12,9 +11,10 @@ import {
   SubmitDataType,
   DayJSType,
 } from '@/utils/type/type';
+import { FormInstance } from 'ant-design-vue';
+import * as dayjs from 'dayjs';
 
-const formRef = ref();
-const date = useDate();
+const formRef = ref<FormInstance>();
 const weatherStore = useWeatherStore();
 const loadingStore = useLoadingStore();
 
@@ -30,11 +30,11 @@ const formState = ref<FormType>({
 
 /**date calculate/format function */
 const calculateDate = (dateData: DayJSType[]): CalculateDateType => {
-  const firstDate: string = date(dateData[0]?.$d).format('YYYYMMDD') || 0;
-  const lastDate: string = date(dateData[1]?.$d).format('YYYYMMDD') || 0;
+  const firstDate = dayjs(dateData[0]?.$d).format('YYYYMMDD');
+  const lastDate = dayjs(dateData[1]?.$d).format('YYYYMMDD');
 
-  const date1: Dayjs = date(firstDate);
-  const date2: Dayjs = date(lastDate);
+  const date1: Dayjs = dayjs(firstDate);
+  const date2: Dayjs = dayjs(lastDate);
 
   const dateDiff: number = date2.diff(date1, 'day') + 1;
 
@@ -77,7 +77,7 @@ const submitHandler = () => {
 const disabledDate = (current: Dayjs) => {
   const today = new Date();
   const yesterday = new Date(today.setDate(today.getDate() - 1));
-  return current >= date(yesterday).endOf('day');
+  return current >= dayjs(yesterday).endOf('day');
 };
 </script>
 

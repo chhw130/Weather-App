@@ -14,7 +14,6 @@ const weatherStore = useWeatherStore();
 onBeforeMount(async () => {
   await router.isReady();
   selectedKeys.value = [route.name];
-  // console.log(route, route.name);
 });
 
 /**menu control function */
